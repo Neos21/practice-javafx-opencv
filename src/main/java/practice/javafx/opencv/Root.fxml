@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="practice.javafx.opencv.RootController">
+  <HBox>
+    <Button text="Start" fx:id="buttonStart" onAction="#onStartCamera" />
+    <Button text="Stop" fx:id="buttonStop" onAction="#onStopCamera" />
+  </HBox>
+  <ImageView fx:id="imageView" />
+</VBox>

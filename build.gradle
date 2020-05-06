@@ -9,9 +9,10 @@
 plugins {
   // Apply the java plugin to add support for Java
   id 'java'
-  
   // Apply the application plugin to add support for building a CLI application.
   id 'application'
+  // classpath を出力させて自動補完を効かせる
+  id 'eclipse'
 }
 
 repositories {
@@ -23,9 +24,50 @@ repositories {
 dependencies {
   // This dependency is used by the application.
   implementation 'com.google.guava:guava:28.2-jre'
+  // JavaFX
+  compile files("${System.properties['java.home']}/lib/ext/jfxrt.jar")
+  // JAR
+  compile fileTree(dir: 'lib', include: '*.jar')
 }
+
+run {
+  // For Windows : Set OpenCV Native Library Path
+  if(org.gradle.internal.os.OperatingSystem.current().isWindows()) {
+    systemProperty "java.library.path", file("C:\\PATH\\TO\\opencv\\build\\java\\x64").absolutePath
+  }
+}
+
+sourceSets {
+  main {
+    java {
+      srcDir 'src'
+    }
+    // src/main/java/ 配下に置いた FXML などのリソースファイル群をビルド後の class ファイルと同一階層に配置できるようにする
+    resources {
+      srcDir 'src/main/java'
+    }
+    java.outputDir = file('bin')
+    output.resourcesDir = file('bin')
+  }
+}
+
+tasks.withType(JavaCompile) {
+  // For Windows : Set Character Encoding
+  options.encoding = 'UTF-8'
+}
+
+mainClassName = 'practice.javafx.opencv.App'
 
 application {
   // Define the main class for the application.
-  mainClassName = 'practice.javafx.opencv.App'
+  mainClassName = mainClassName
+}
+
+jar {
+  from {
+    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  }
+  manifest {
+    attributes 'Main-Class': mainClassName
+  }
 }
