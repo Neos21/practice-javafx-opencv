@@ -24,7 +24,7 @@ $ ./gradlew run
 
 # Build And Exec JAR
 $ ./gradlew build
-$ java -Djava.library.path='C:\\PATH\\TO\\opencv\\build\\java\\x64' -jar ./build/libs/practice-javafx-opencv.jar
+$ java -Djava.library.path='C:\PATH\TO\opencv\build\java\x64' -jar ./build/libs/practice-javafx-opencv.jar
 ```
 
 
