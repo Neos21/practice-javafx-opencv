@@ -22,7 +22,7 @@
   <classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer" />
   <classpathentry kind="output" path="bin/default" />
   <!-- Enable To Reference OpenCV Library on VSCode -->
-  <classpathentry kind="lib" exported="true" path="lib/opencv-320.jar" >
+  <classpathentry kind="lib" exported="true" path="lib/opencv-320.jar">
     <accessrules>
       <accessible kind="accessible" pattern="**" />
     </accessrules>
